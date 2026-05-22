@@ -3,7 +3,7 @@ package ru.yandex.practicum.sleeptracker;
 import java.time.Duration;
 import java.util.List;
 
-public class MinSleepSession implements Function{
+public class MinSleepSession implements Function {
     @Override
     public int calculate(List<SleepingSession> sessions) {
         return (int) Math.round(sessions.stream()

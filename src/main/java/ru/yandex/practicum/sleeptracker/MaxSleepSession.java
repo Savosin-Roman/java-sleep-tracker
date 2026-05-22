@@ -3,7 +3,7 @@ package ru.yandex.practicum.sleeptracker;
 import java.time.Duration;
 import java.util.List;
 
-public class MaxSleepSession implements Function{
+public class MaxSleepSession implements Function {
 
     @Override
     public int calculate(List<SleepingSession> sessions) {
