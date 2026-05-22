@@ -10,6 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SleepTrackerAppTest {
+
     private List<SleepingSession> sessions;
 
     @BeforeEach
@@ -24,6 +25,7 @@ public class SleepTrackerAppTest {
                 quality
         );
     }
+
     @Test
     void testSumSleepSessionsShouldReturnCount() {
         SumSleepSessions sumSleepSessions = new SumSleepSessions();
@@ -138,7 +140,6 @@ public class SleepTrackerAppTest {
         SleeplessNightsCounter sleeplessNightsCounter = new SleeplessNightsCounter();
         sessions.add(createSession("2024-01-01T22:00", "2024-01-02T06:00", SleepQuality.NORMAL));
         sessions.add(createSession("2024-01-02T23:00", "2024-01-03T07:00", SleepQuality.NORMAL));
-
         sessions.add(createSession("2024-01-04T22:00", "2024-01-05T06:00", SleepQuality.NORMAL));
 
         int result = sleeplessNightsCounter.calculate(sessions);
@@ -159,10 +160,9 @@ public class SleepTrackerAppTest {
     }
 
     @Test
-    void testSleeplessNightsCounter_shouldCountMultipleSleeplessNights() {
+    void testSleeplessNightsCounterShouldCountMultipleSleeplessNights() {
         SleeplessNightsCounter sleeplessNightsCounter = new SleeplessNightsCounter();
         sessions.add(createSession("2024-01-01T22:00", "2024-01-02T06:00", SleepQuality.NORMAL));
-
         sessions.add(createSession("2024-01-04T22:00", "2024-01-05T06:00", SleepQuality.NORMAL));
 
         int result = sleeplessNightsCounter.calculate(sessions);
@@ -227,9 +227,9 @@ public class SleepTrackerAppTest {
     @Test
     void testChronotypeCounterShouldReturnPigeon() {
         ChronotypeCounter chronotypeCounter = new ChronotypeCounter();
-        sessions.add(createSession("2024-01-01T23:30", "2024-01-02T08:00", SleepQuality.NORMAL)); // Совиный
-        sessions.add(createSession("2024-01-02T21:30", "2024-01-03T06:30", SleepQuality.NORMAL)); // Жаворонок
-        sessions.add(createSession("2024-01-03T22:30", "2024-01-04T08:00", SleepQuality.NORMAL)); // Промежуточный
+        sessions.add(createSession("2024-01-01T23:30", "2024-01-02T08:00", SleepQuality.NORMAL));
+        sessions.add(createSession("2024-01-02T21:30", "2024-01-03T06:30", SleepQuality.NORMAL));
+        sessions.add(createSession("2024-01-03T22:30", "2024-01-04T08:00", SleepQuality.NORMAL));
 
         int result = chronotypeCounter.calculate(sessions);
 
