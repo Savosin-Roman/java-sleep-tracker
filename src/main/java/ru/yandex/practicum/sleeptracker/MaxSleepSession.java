@@ -7,7 +7,7 @@ public class MaxSleepSession implements Function {
 
     @Override
     public int calculate(List<SleepingSession> sessions) {
-        return (int) Math.round(sessions.stream()
+        return Math.round(sessions.stream()
                 .mapToLong(session -> Duration.between(session.getStartSleep(),
                         session.getFinishSleep()).toMinutes())
                 .max()

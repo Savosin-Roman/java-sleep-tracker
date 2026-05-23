@@ -6,7 +6,7 @@ import java.util.List;
 public class MinSleepSession implements Function {
     @Override
     public int calculate(List<SleepingSession> sessions) {
-        return (int) Math.round(sessions.stream()
+        return Math.round(sessions.stream()
                 .mapToLong(session -> Duration.between(session.getStartSleep(),
                         session.getFinishSleep()).toMinutes())
                 .min()

@@ -14,7 +14,7 @@ public class SleeplessNightsCounter implements Function {
         LocalDate firstDate = sessions.get(0).getStartSleep().toLocalDate();
         LocalDate lastDate = sessions.get(sessions.size() - 1).getStartSleep().toLocalDate();
 
-        int totalNights = (int) Period.between(firstDate, lastDate).getDays() + 1;
+        int totalNights = Period.between(firstDate, lastDate).getDays() + 1;
 
         long nightsWithSleep = sessions.stream()
                 .filter(this::isNightSession)

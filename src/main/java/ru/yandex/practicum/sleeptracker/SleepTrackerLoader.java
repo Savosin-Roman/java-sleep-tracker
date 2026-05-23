@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -15,7 +14,6 @@ public class SleepTrackerLoader {
     public List<SleepingSession> readFromFile(String filename) {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yy HH:mm");
-        List<SleepingSession> sleepingSessions = new ArrayList<>();
 
         try (Stream<String> lines = Files.lines(Paths.get(filename))) {
             return lines

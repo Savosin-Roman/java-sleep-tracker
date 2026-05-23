@@ -9,26 +9,18 @@ public class SleepAnalysisResult {
         this.value = value;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public int getValue() {
-        return value;
-    }
-
     public void printResult() {
         if (description.equals("Определение хронотипа")) {
             System.out.printf("%-40s: ", description);
             switch (value) {
                 case 1:
-                    System.out.println("Сова");
+                    System.out.println(Chronotype.OWL.getDisplayName());
                     break;
                 case 2:
-                    System.out.println("Жаворонок");
+                    System.out.println(Chronotype.LARK.getDisplayName());
                     break;
                 case 3:
-                    System.out.println("Голубь");
+                    System.out.println(Chronotype.PIGEON.getDisplayName());
                     break;
                 default:
                     System.out.println("Недостаточно данных");

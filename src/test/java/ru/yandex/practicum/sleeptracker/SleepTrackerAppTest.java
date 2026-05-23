@@ -208,8 +208,12 @@ public class SleepTrackerAppTest {
         sessions.add(createSession("2024-01-03T23:15", "2024-01-04T10:15", SleepQuality.NORMAL));
 
         int result = chronotypeCounter.calculate(sessions);
+        Chronotype chronotype = chronotypeCounter.determineChronotype(sessions);
 
         assertEquals(1, result);
+        assertEquals(Chronotype.OWL, chronotype);
+        assertEquals(1, chronotype.getNumber());
+        assertEquals("Сова", chronotype.getDisplayName());
     }
 
     @Test
@@ -220,8 +224,12 @@ public class SleepTrackerAppTest {
         sessions.add(createSession("2024-01-03T21:15", "2024-01-04T06:45", SleepQuality.NORMAL));
 
         int result = chronotypeCounter.calculate(sessions);
+        Chronotype chronotype = chronotypeCounter.determineChronotype(sessions);
 
         assertEquals(2, result);
+        assertEquals(Chronotype.LARK, chronotype);
+        assertEquals(2, chronotype.getNumber());
+        assertEquals("Жаворонок", chronotype.getDisplayName());
     }
 
     @Test
@@ -232,8 +240,12 @@ public class SleepTrackerAppTest {
         sessions.add(createSession("2024-01-03T22:30", "2024-01-04T08:00", SleepQuality.NORMAL));
 
         int result = chronotypeCounter.calculate(sessions);
+        Chronotype chronotype = chronotypeCounter.determineChronotype(sessions);
 
         assertEquals(3, result);
+        assertEquals(Chronotype.PIGEON, chronotype);
+        assertEquals(3, chronotype.getNumber());
+        assertEquals("Голубь", chronotype.getDisplayName());
     }
 
     @Test
@@ -241,17 +253,23 @@ public class SleepTrackerAppTest {
         ChronotypeCounter chronotypeCounter = new ChronotypeCounter();
 
         int result = chronotypeCounter.calculate(sessions);
+        Chronotype chronotype = chronotypeCounter.determineChronotype(sessions);
 
         assertEquals(0, result);
+        assertEquals(Chronotype.INSUFFICIENT_DATA, chronotype);
+        assertEquals(0, chronotype.getNumber());
     }
 
     @Test
-    void testChronotypeCounterShouldHandleCrossMidnight() {
+    void testChronotypeCounterShouldReturnZeroWhenNoNightSessions() {
         ChronotypeCounter chronotypeCounter = new ChronotypeCounter();
-        sessions.add(createSession("2024-01-01T23:30", "2024-01-02T09:30", SleepQuality.NORMAL));
+        sessions.add(createSession("2024-01-01T14:00", "2024-01-01T16:00", SleepQuality.NORMAL));
 
         int result = chronotypeCounter.calculate(sessions);
+        Chronotype chronotype = chronotypeCounter.determineChronotype(sessions);
 
-        assertEquals(1, result);
+        assertEquals(0, result);
+        assertEquals(Chronotype.NO_NIGHT_SESSIONS, chronotype);
+        assertEquals(0, chronotype.getNumber());
     }
 }
